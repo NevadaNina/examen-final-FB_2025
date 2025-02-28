@@ -1,0 +1,48 @@
+using System;
+class Materiales
+{
+    public static void ObtenerNumeroCentral(string rutaArchivo)
+    {
+        try
+        {
+            string[] lineas = File.ReadAllLines(rutaArchivo);
+
+            int filas = lineas.Length;
+            int columnas = lineas[0].Split(',').Length;
+
+
+            if (filas % 2 != 0 || columnas % 2 != 0)
+            {
+                Console.WriteLine("La matriz debe tener cantidades pares.");
+                return;
+            }
+
+
+            int[,] matriz = new int[filas, columnas];
+
+            for (int i = 0; i < filas; i++)
+            {
+                string[] valores = lineas[i].Split(',');
+                for (int j = 0; j < columnas; j++)
+                {
+                    matriz[i, j] = int.Parse(valores[j]);
+                }
+            }
+
+            int filaCentral = filas / 2;
+            int columnaCentral = columnas / 2;
+
+
+            Console.WriteLine("Número central: " + matriz[filaCentral - 1, columnaCentral - 1]);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al leer el archivo: " + ex.Message);
+        }
+    }
+    class Program
+    {
+       
+    }
+}
+//C:\Users\NIEVES\OneDrive\Documentos\PROGRAMACION 3\informacion
